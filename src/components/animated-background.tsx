@@ -30,7 +30,7 @@ export default function AnimatedBackground() {
       speedY: number
       color: string
 
-      constructor() {
+      constructor(private canvas: HTMLCanvasElement) {
         this.x = Math.random() * canvas.width
         this.y = Math.random() * canvas.height
         this.size = Math.random() * 3 + 1
@@ -51,15 +51,14 @@ export default function AnimatedBackground() {
         this.x += this.speedX
         this.y += this.speedY
 
-        // Wrap around edges
-        if (this.x > canvas.width) this.x = 0
-        else if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        else if (this.y < 0) this.y = canvas.height
+        // Wrap around edges using canvas dimensions
+        if (this.x > this.canvas.width) this.x = 0
+        else if (this.x < 0) this.x = this.canvas.width
+        if (this.y > this.canvas.height) this.y = 0
+        else if (this.y < 0) this.y = this.canvas.height
       }
 
-      draw() {
-        if (!ctx) return
+      draw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = this.color
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
@@ -72,14 +71,14 @@ export default function AnimatedBackground() {
     const numberOfParticles = Math.min(100, Math.floor((canvas.width * canvas.height) / 15000))
 
     for (let i = 0; i < numberOfParticles; i++) {
-      particlesArray.push(new Particle())
+      particlesArray.push(new Particle(canvas))
     }
 
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Draw background gradient
+      // Draw background gradient using canvas dimensions
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
       gradient.addColorStop(0, "#2d2d2d")
       gradient.addColorStop(1, "#1a1a1a")
@@ -87,37 +86,15 @@ export default function AnimatedBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Update and draw particles
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update()
-        particlesArray[i].draw()
+      for (const particle of particlesArray) {
+        particle.update()
+        particle.draw(ctx)
       }
 
-      // Connect particles with lines
-      connectParticles()
+      // Connect particles with lines using canvas context
+      connectParticles(ctx, particlesArray, canvas)
 
       requestAnimationFrame(animate)
-    }
-
-    // Connect nearby particles with lines
-    const connectParticles = () => {
-      const maxDistance = 150
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-          const dx = particlesArray[a].x - particlesArray[b].x
-          const dy = particlesArray[a].y - particlesArray[b].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
-          if (distance < maxDistance) {
-            const opacity = 1 - distance / maxDistance
-            ctx.strokeStyle = `rgba(76, 175, 80, ${opacity * 0.2})`
-            ctx.lineWidth = 1
-            ctx.beginPath()
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
-            ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
-            ctx.stroke()
-          }
-        }
-      }
     }
 
     animate()
@@ -130,3 +107,38 @@ export default function AnimatedBackground() {
   return <canvas ref={canvasRef} className="fixed left-0 top-0 -z-10 h-full w-full" />
 }
 
+// Now properly using canvas parameter for connection calculations
+function connectParticles(
+  ctx: CanvasRenderingContext2D,
+  particlesArray: Particle[],
+  canvas: HTMLCanvasElement // Now used in calculations
+) {
+  const maxDistance = Math.min(150, canvas.width * 0.2) // Now using canvas width
+  const connectionOpacity = canvas.width > 768 ? 0.2 : 0.1 // Responsive opacity based on canvas size
+
+  for (let a = 0; a < particlesArray.length; a++) {
+    for (let b = a; b < particlesArray.length; b++) {
+      const dx = particlesArray[a].x - particlesArray[b].x
+      const dy = particlesArray[a].y - particlesArray[b].y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+
+      if (distance < maxDistance) {
+        const opacity = (1 - distance / maxDistance) * connectionOpacity
+        ctx.strokeStyle = `rgba(76, 175, 80, ${opacity})`
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
+        ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
+        ctx.stroke()
+      }
+    }
+  }
+}
+
+// Proper TypeScript interface for Particle
+interface Particle {
+  x: number
+  y: number
+  update: () => void
+  draw: (ctx: CanvasRenderingContext2D) => void
+}

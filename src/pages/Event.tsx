@@ -108,7 +108,7 @@ export default function EventPage() {
                         <div className="space-y-1">
                           <div className="truncate text-xs text-emerald-400">{event.title}</div>
                           <div className="flex flex-wrap gap-1">
-                            {event.rewards.slice(0, 2).map((reward, i) => (
+                            {event.rewards.slice(0, 2).map((_reward, i) => (
                               <Trophy key={i} className="h-3 w-3 text-yellow-400" />
                             ))}
                           </div>
