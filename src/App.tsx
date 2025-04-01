@@ -1,0 +1,18 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import StorePage from "./pages/Store";
+import RulesPage from "./pages/Rules";
+import AboutPage from "./pages/About";
+import EventPage from "./pages/Event";
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/store" element={<StorePage />} />
+      <Route path="/rules" element={<RulesPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/event" element={<EventPage />} />
+    </Routes>
+  );
+}
