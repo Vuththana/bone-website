@@ -87,7 +87,7 @@ export default function LeaderboardsPage() {
           <div className="mb-12 text-center">
             <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">LEADERBOARDS</h1>
             <p className="mx-auto max-w-2xl text-lg text-bone-200">
-              Check out the top players on Bone SMP across different categories. Can you make it to the top?
+              Check out the top players on Bone Network across different categories. Can you make it to the top?
             </p>
           </div>
 
@@ -177,7 +177,7 @@ export default function LeaderboardsPage() {
       <footer className="relative z-10 bg-black/60 px-4 py-6 text-center backdrop-blur-sm">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm text-bone-400">
-            &copy; {new Date().getFullYear()} Bone SMP. Not affiliated with Mojang AB.
+            &copy; {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
           </p>
         </div>
       </footer>

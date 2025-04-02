@@ -160,7 +160,7 @@ export default function Home() {
         <footer className="relative z-10 bg-black/60 px-4 py-6 text-center backdrop-blur-sm">
           <div className="mx-auto max-w-6xl">
             <p className="text-sm text-bone-400">
-              &copy; {new Date().getFullYear()} Bone SMP. Not affiliated with Mojang AB.
+              &copy; {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
             </p>
           </div>
         </footer>

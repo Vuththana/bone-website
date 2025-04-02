@@ -20,7 +20,7 @@ export default function RulesPage() {
           <div className="mb-12 text-center">
             <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">SERVER RULES</h1>
             <p className="mx-auto max-w-2xl text-lg text-bone-200">
-              To ensure everyone has a great experience on Bone SMP, please follow these rules. Failure to comply may
+              To ensure everyone has a great experience on Bone Network, please follow these rules. Failure to comply may
               result in temporary or permanent bans.
             </p>
           </div>
@@ -167,22 +167,8 @@ export default function RulesPage() {
       {/* Footer */}
       <footer className="relative z-10 bg-black/60 px-4 py-6 text-center backdrop-blur-sm">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-4 flex flex-wrap justify-center gap-6">
-            <Link to="/" className="text-bone-300 transition-colors hover:text-bone-100">
-              Home
-            </Link>
-            <Link to="/store" className="text-bone-300 transition-colors hover:text-bone-100">
-              Store
-            </Link>
-            <Link to="/rules" className="text-bone-300 transition-colors hover:text-bone-100">
-              Rules
-            </Link>
-            <Link to="/about" className="text-bone-300 transition-colors hover:text-bone-100">
-              About
-            </Link>
-          </div>
           <p className="text-sm text-bone-400">
-            &copy; {new Date().getFullYear()} Bone SMP. Not affiliated with Mojang AB.
+            &copy; {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
           </p>
         </div>
       </footer>

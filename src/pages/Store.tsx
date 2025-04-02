@@ -106,22 +106,8 @@ export default function StorePage() {
       {/* Footer */}
       <footer className="relative z-10 bg-black/60 px-4 py-6 text-center backdrop-blur-sm">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-4 flex flex-wrap justify-center gap-6">
-            <Link to="/" className="text-bone-300 transition-colors hover:text-bone-100">
-              Home
-            </Link>
-            <Link to="/store" className="text-bone-300 transition-colors hover:text-bone-100">
-              Store
-            </Link>
-            <Link to="/rules" className="text-bone-300 transition-colors hover:text-bone-100">
-              Rules
-            </Link>
-            <Link to="/about" className="text-bone-300 transition-colors hover:text-bone-100">
-              About
-            </Link>
-          </div>
           <p className="text-sm text-bone-400">
-            &copy; {new Date().getFullYear()} Bone SMP. Not affiliated with Mojang AB.
+            &copy; {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
           </p>
         </div>
       </footer>

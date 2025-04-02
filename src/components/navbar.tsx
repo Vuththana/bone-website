@@ -58,6 +58,12 @@ const Navbar = () => {
                 STORE
               </Link>
               <Link
+                to="/event"
+                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+              >
+                EVENT
+              </Link>
+              <Link
                 to="/leaderboards"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
                 onClick={() => setIsMenuOpen(false)}
@@ -75,12 +81,6 @@ const Navbar = () => {
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
                 ABOUT
-              </Link>
-              <Link
-                to="/event"
-                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
-              >
-                EVENT
               </Link>
               <a
                 href="https://discord.gg/example"
@@ -129,6 +129,12 @@ const Navbar = () => {
             STORE
           </Link>
           <Link
+                to="/event"
+                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
+              >
+                EVENT
+          </Link>
+          <Link
             to="/leaderboards"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
@@ -149,12 +155,6 @@ const Navbar = () => {
           >
             ABOUT
           </Link>
-          <Link
-                to="/event"
-                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
-              >
-                EVENT
-              </Link>
           <a
             href="https://discord.gg/example"
             target="_blank"

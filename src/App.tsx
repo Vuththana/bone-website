@@ -5,6 +5,7 @@ import RulesPage from "./pages/Rules";
 import AboutPage from "./pages/About";
 import EventPage from "./pages/Event";
 import LeaderboardsPage from "./pages/Leaderboards";
+import PurchasePage from "./pages/Purchase/Purchase";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/rules" element={<RulesPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/event" element={<EventPage />} />
+      <Route path="/store/purchase" element={<PurchasePage />} />
     </Routes>
   );
 }

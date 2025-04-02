@@ -21,7 +21,7 @@ export default function AboutPage() {
           <div className="mb-12 text-center">
             <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">ABOUT US</h1>
             <p className="mx-auto max-w-2xl text-lg text-bone-200">
-              Learn more about Bone SMP, our history, and the team behind the server.
+              Learn more about Bone Network, our history, and the team behind the server.
             </p>
           </div>
 
@@ -29,18 +29,22 @@ export default function AboutPage() {
             <h2 className="mb-6 font-minecraft text-2xl text-bone-100">OUR STORY</h2>
             <div className="space-y-4 text-bone-200">
               <p>
-                Bone SMP was founded in early 2023 by a group of friends who wanted to create a unique Minecraft
-                survival experience. What started as a small private server quickly grew into a thriving community of
-                builders, explorers, and adventurers.
+              Founded in early 2023 by a group of friends, Bone Network began as a small private server 
+              with a vision—to create a unique and immersive Minecraft survival experience. 
+              What started as a passion project quickly grew into a thriving community of builders, explorers, and adventurers.
               </p>
               <p>
-                Our server is built on the principles of creativity, community, and fair play. We strive to provide a
-                balanced gameplay experience where players can express their creativity while enjoying the challenge of
-                survival Minecraft.
+              At Bone Network, we believe in fostering creativity, community, and fair play. 
+              Our server is designed to provide a balanced and engaging gameplay experience, 
+              where players can unleash their creativity while embracing the challenges of survival Minecraft.
               </p>
               <p>
-                The name "Bone" was inspired by the minecraft item as you know bone where you killed a skeleton to get it or mine bone blocks, we decided
-                to put because it a short name.
+              The name "Bone" was inspired by the iconic Minecraft item. Whether obtained from defeating skeletons or mining bone blocks, 
+              it symbolizes both perseverance and resourcefulness—qualities that define our community. 
+              Plus, it's short, memorable, and uniquely ours.
+              </p>
+              <p>
+                Join us and be part of the adventure!
               </p>
             </div>
           </div>

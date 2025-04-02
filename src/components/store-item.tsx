@@ -1,4 +1,5 @@
 import { Check } from "lucide-react"
+import { Link } from "react-router-dom"
 
 interface StoreItemProps {
   title: string
@@ -37,9 +38,12 @@ export default function StoreItem({
           ))}
         </ul>
 
-        <button className="w-full rounded-md bg-emerald-600 py-3 font-minecraft text-white transition-colors hover:bg-emerald-500">
+        <Link
+          to={`/store/purchase?rank=${encodeURIComponent(title)}&price=${price}`}
+          className="block w-full rounded-md bg-emerald-600 py-3 text-center font-minecraft text-white transition-colors hover:bg-emerald-500"
+        >
           PURCHASE
-        </button>
+        </Link>
       </div>
     </div>
   )
