@@ -58,6 +58,13 @@ const Navbar = () => {
                 STORE
               </Link>
               <Link
+                to="/leaderboards"
+                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                LEADEBOARDS
+              </Link>
+              <Link
                 to="/rules"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
@@ -122,6 +129,13 @@ const Navbar = () => {
             STORE
           </Link>
           <Link
+            to="/leaderboards"
+            className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            LEADEBOARDS
+          </Link>
+          <Link
             to="/rules"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
@@ -135,6 +149,12 @@ const Navbar = () => {
           >
             ABOUT
           </Link>
+          <Link
+                to="/event"
+                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
+              >
+                EVENT
+              </Link>
           <a
             href="https://discord.gg/example"
             target="_blank"
