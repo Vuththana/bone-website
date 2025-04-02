@@ -73,7 +73,7 @@ export default function StorePage() {
             <h2 className="mb-4 font-minecraft text-2xl text-bone-100">PAYMENT INFORMATION</h2>
             <p className="mb-4 text-bone-200">
               All purchases are processed securely through our payment provider. Once your payment is confirmed, your
-              perks will be automatically applied to your account within 5 minutes.
+              perks will be automatically applied to your account within 5 to 30 minutes.
             </p>
             <p className="mb-4 text-bone-200">
               If you encounter any issues with your purchase, please contact our support team on Discord.

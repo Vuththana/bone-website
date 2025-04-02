@@ -86,7 +86,7 @@ export default function AboutPage() {
               <h2 className="font-minecraft text-2xl text-bone-100">OUR TEAM</h2>
             </div>
             <p className="mb-6 text-bone-200">
-              Meet the dedicated staff members who keep Bone SMP running smoothly and ensure everyone has a great
+              Meet the dedicated staff members who keep Bone Network running smoothly and ensure everyone has a great
               experience.
             </p>
             <div className="grid gap-6 md:grid-cols-2">

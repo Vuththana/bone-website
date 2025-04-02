@@ -95,8 +95,8 @@ export default function Home() {
             <div className="mx-auto max-w-4xl rounded-lg bg-black/40 p-6 backdrop-blur-sm">
               <h2 className="mb-6 text-center font-minecraft text-3xl text-bone-100">ABOUT BONE SMP</h2>
               <p className="mb-4 text-lg text-bone-200">
-                Established in 2023, Bone SMP is a community-focused Minecraft server offering a unique survival
-                experience with a twist. Our server features custom terrain, balanced gameplay, and a friendly community.
+                Established in 2023, Bone Network is a community-focused Minecraft server offering a unique survival
+                experience with a twist. Our server features balanced gameplay, and a friendly community.
               </p>
               <p className="mb-6 text-lg text-bone-200">
                 Whether you're a builder, explorer, or redstone engineer, there's a place for you in our world.
