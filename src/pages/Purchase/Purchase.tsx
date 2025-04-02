@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import { ChevronLeft, User, Mail, Check, RefreshCw } from "lucide-react"
 import AnimatedBackground from "@/components/animated-background"
@@ -14,7 +13,7 @@ export default function PurchasePage() {
   const rank = searchParams.get("rank") || "Unknown Rank"
   const price = searchParams.get("price") || "0.00"
 
-  const [step, setStep] = useState<"form" | "payment" | "confirmation">("form")
+  const [step, setStep] = useState<"info-payment" | "confirmation">("info-payment")
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -36,12 +35,9 @@ export default function PurchasePage() {
     success: false,
   })
 
-  // Generate a random transaction ID when the component mounts
   useEffect(() => {
     const randomId = Math.random().toString(36).substring(2, 10).toUpperCase()
     setTransactionId(`BN-${randomId}`)
-    
-    // Add transactionId to formData
     setFormData(prev => ({
       ...prev,
       transactionId: `BN-${randomId}`,
@@ -59,8 +55,6 @@ export default function PurchasePage() {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0]
       setPaymentProof(file)
-      
-      // Create preview URL for the image
       const reader = new FileReader()
       reader.onloadend = () => {
         setPaymentProofPreview(reader.result as string)
@@ -70,130 +64,71 @@ export default function PurchasePage() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setFormStatus({ submitting: true, error: null, success: false });
-  
-    try {
-      console.log("Submitting form data:", formData);
-      const response = await fetch("https://formspree.io/f/mzzejzjn", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        const contentType = response.headers.get("Content-Type") || "";
-        let errorMessage = `Form submission failed with status: ${response.status}`;
-        
-        if (contentType.includes("application/json")) {
-          const data = await response.json();
-          errorMessage = data.error || errorMessage;
-        } else {
-          const text = await response.text();
-          console.error("Non-JSON response:", text);
-          errorMessage = "Unexpected server response. Please try again.";
-        }
-        
-        throw new Error(errorMessage);
-      }
-  
-      setFormStatus({ submitting: false, error: null, success: true });
-      setIsLoading(false);
-      setStep("payment");
-    } catch (error: unknown) { // Explicitly type error as unknown
-      console.error("Submission error:", error);
-      // Use type guard to safely access error.message
-      const errorMessage = error instanceof Error ? error.message : "Network error. Please check your connection and try again.";
-      setFormStatus({
-        submitting: false,
-        error: errorMessage,
-        success: false,
-      });
-      setIsLoading(false);
-    }
-  };
-
-  const handlePaymentConfirmation = async () => {
+    e.preventDefault()
     if (!paymentProof) {
       setFormStatus({
         submitting: false,
         error: "Please upload a proof of payment image.",
         success: false,
-      });
-      return;
+      })
+      return
     }
-  
-    setIsLoading(true);
-  
+
+    setIsLoading(true)
+    setFormStatus({ submitting: true, error: null, success: false })
+
     try {
-      const uploadFormData = new FormData();
-      uploadFormData.append("file", paymentProof);
-      uploadFormData.append("upload_preset", "ml_default");
-  
+      // Upload image to Cloudinary
+      const uploadFormData = new FormData()
+      uploadFormData.append("file", paymentProof)
+      uploadFormData.append("upload_preset", "ml_default")
+
       const cloudinaryResponse = await axios.post(
         "https://api.cloudinary.com/v1_1/dhsqmvg8v/image/upload",
         uploadFormData
-      );
-  
+      )
+
       if (!cloudinaryResponse.data.secure_url) {
-        throw new Error("Upload failed: No secure URL returned");
+        throw new Error("Upload failed: No secure URL returned")
       }
-  
-      const imageUrl = cloudinaryResponse.data.secure_url;
-      console.log("File uploaded to Cloudinary:", imageUrl);
-  
+
+      const imageUrl = cloudinaryResponse.data.secure_url
+
+      // Submit form with image URL
       const formDataWithImage = {
         ...formData,
         paymentProofUrl: imageUrl,
-      };
-  
-      const formspreeResponse = await fetch("https://formspree.io/f/mzzejzjn", {
+      }
+
+      const response = await fetch("https://formspree.io/f/mzzejzjn", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formDataWithImage),
-      });
-  
-      if (!formspreeResponse.ok) {
-        const contentType = formspreeResponse.headers.get("Content-Type") || "";
-        let errorMessage = `Formspree submission failed with status: ${formspreeResponse.status}`;
-        
-        if (contentType.includes("application/json")) {
-          const data = await formspreeResponse.json();
-          errorMessage = data.error || errorMessage;
-        } else {
-          const text = await formspreeResponse.text();
-          console.error("Non-JSON response from Formspree:", text);
-          errorMessage = "Unexpected server response from Formspree. Please try again.";
-        }
-        
-        throw new Error(errorMessage);
+      })
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status: ${response.status}`)
       }
-  
-      setFormStatus({ submitting: false, error: null, success: true });
-      setStep("confirmation");
-    } catch (error: unknown) { // Explicitly type error as unknown
-      console.error("Error in payment confirmation:", error);
-      // Use type guard to safely access error.message
-      const errorMessage = error instanceof Error ? error.message : "An error occurred. Please try again.";
+
+      setFormStatus({ submitting: false, error: null, success: true })
+      setStep("confirmation")
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "An error occurred"
       setFormStatus({
         submitting: false,
         error: errorMessage,
         success: false,
-      });
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-stone-900 text-stone-100">
       <AnimatedBackground />
-
       <main className="relative z-10 px-4 py-16 pt-16">
         <div className="mx-auto max-w-2xl">
           <div className="mb-8 flex items-center">
@@ -212,27 +147,20 @@ export default function PurchasePage() {
           <div className="mb-8">
             <div className="flex items-center justify-center">
               <div
-                className={`flex h-8 w-8 items-center justify-center rounded-full ${step === "form" ? "bg-emerald-500 text-white" : "bg-emerald-700 text-white"}`}
+                className={`flex h-8 w-8 items-center justify-center rounded-full ${step === "info-payment" ? "bg-emerald-500 text-white" : "bg-emerald-700 text-white"}`}
               >
                 1
-              </div>
-              <div className={`h-1 w-16 ${step === "form" ? "bg-stone-700" : "bg-emerald-700"}`}></div>
-              <div
-                className={`flex h-8 w-8 items-center justify-center rounded-full ${step === "payment" ? "bg-emerald-500 text-white" : step === "confirmation" ? "bg-emerald-700 text-white" : "bg-stone-700 text-bone-300"}`}
-              >
-                2
               </div>
               <div className={`h-1 w-16 ${step === "confirmation" ? "bg-emerald-700" : "bg-stone-700"}`}></div>
               <div
                 className={`flex h-8 w-8 items-center justify-center rounded-full ${step === "confirmation" ? "bg-emerald-500 text-white" : "bg-stone-700 text-bone-300"}`}
               >
-                3
+                2
               </div>
             </div>
             <div className="mt-2 flex justify-center">
               <div className="flex w-full max-w-md justify-between px-4 text-sm">
-                <span className={step === "form" ? "text-emerald-400" : "text-bone-300"}>Information</span>
-                <span className={step === "payment" ? "text-emerald-400" : "text-bone-300"}>Payment</span>
+                <span className={step === "info-payment" ? "text-emerald-400" : "text-bone-300"}>Information & Payment</span>
                 <span className={step === "confirmation" ? "text-emerald-400" : "text-bone-300"}>Confirmation</span>
               </div>
             </div>
@@ -245,14 +173,15 @@ export default function PurchasePage() {
             </div>
           )}
 
-          {/* Form Step */}
-          {step === "form" && (
+          {/* Info & Payment Step */}
+          {step === "info-payment" && (
             <div className="rounded-lg bg-black/40 p-6 backdrop-blur-sm">
               <form onSubmit={handleSubmit}>
+                {/* User Information */}
                 <div className="mb-6">
                   <div className="mb-4">
                     <label htmlFor="username" className="mb-2 block font-minecraft text-bone-100">
-                      Minecraft Username (Make sure you typed it correctly)
+                      Minecraft Username
                     </label>
                     <div className="flex items-center rounded-md border border-stone-700 bg-stone-800 px-3 py-2">
                       <User className="mr-2 h-5 w-5 text-stone-500" />
@@ -293,12 +222,7 @@ export default function PurchasePage() {
                       Discord Username (Optional)
                     </label>
                     <div className="flex items-center rounded-md border border-stone-700 bg-stone-800 px-3 py-2">
-                      <svg
-                        className="mr-2 h-5 w-5 text-stone-500"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg className="mr-2 h-5 w-5 text-stone-500" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
                       </svg>
                       <input
@@ -314,24 +238,87 @@ export default function PurchasePage() {
                   </div>
                 </div>
 
-                <div className="mb-6 rounded-md bg-stone-800/80 p-4">
-                  <div className="mb-2 flex justify-between">
-                    <span className="font-minecraft text-bone-100">Order Summary</span>
-                    <span className="font-minecraft text-bone-100">${price}</span>
-                  </div>
-                  <div className="mb-2 flex justify-between text-sm">
-                    <span className="text-bone-300">{rank}</span>
-                    <span className="text-bone-300">${price}</span>
-                  </div>
-                  <div className="border-t border-stone-700 pt-2">
-                    <div className="flex justify-between">
-                      <span className="font-minecraft text-bone-100">Total</span>
+                {/* Payment Information */}
+                <div className="mb-6">
+                  <h2 className="mb-4 font-minecraft text-xl text-bone-100">Payment Details</h2>
+                  <div className="mb-4 rounded-md bg-stone-800/80 p-4">
+                    <div className="mb-2 flex justify-between">
+                      <span className="font-minecraft text-bone-100">Transaction ID</span>
+                      <div className="flex items-center">
+                        <span className="mr-2 font-minecraft text-emerald-400">{transactionId}</span>
+                        <CopyButton textToCopy={transactionId} />
+                      </div>
+                    </div>
+                    <div className="mb-2 flex justify-between">
+                      <span className="font-minecraft text-bone-100">Amount</span>
                       <span className="font-minecraft text-emerald-400">${price}</span>
+                    </div>
+                    <div className="mb-2 flex justify-between">
+                      <span className="font-minecraft text-bone-100">Bank Account</span>
+                      <div className="flex items-center">
+                        <span className="mr-2 text-bone-100">500 036 264</span>
+                        <CopyButton textToCopy="500 036 264" />
+                      </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-minecraft text-bone-100">Account Name</span>
+                      <span className="text-bone-100">KEO VUTHTHANA</span>
+                    </div>
+                  </div>
+
+                  <div className="mb-4 flex justify-center">
+                    <div className="rounded-lg bg-white p-4">
+                      <img src="https://media.discordapp.net/attachments/560806550315204609/1356919910340628533/aba_mobile_1743585233369.png?ex=67ee51a4&is=67ed0024&hm=09b862d3ab3908adbaefc34de6b2c339e326b2cf1fb9eb4ad54af869eaa02678&=&format=webp&quality=lossless&width=1104&height=886"/>
+                    </div>
+                  </div>
+
+                  {/* Payment Proof Upload */}
+                  <div className="mb-4">
+                    <label htmlFor="paymentProof" className="mb-2 block font-minecraft text-bone-100">
+                      Upload Payment Proof
+                    </label>
+                    <div className={`flex flex-col items-center justify-center rounded-md border-2 border-dashed ${paymentProofPreview ? 'border-emerald-500' : 'border-stone-700'} p-6`}>
+                      {paymentProofPreview ? (
+                        <div className="w-full">
+                          <div className="mb-4 flex justify-center">
+                            <img 
+                              src={paymentProofPreview} 
+                              alt="Payment proof preview" 
+                              className="max-h-48 rounded-md object-contain" 
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPaymentProof(null)
+                              setPaymentProofPreview(null)
+                            }}
+                            className="rounded-md bg-stone-700 px-4 py-2 text-bone-100 hover:bg-stone-600"
+                          >
+                            Remove Image
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="text-center">
+                          <p className="mb-2 text-bone-200">Upload a screenshot of your payment</p>
+                          <p className="text-sm text-bone-300">JPG, JPEG & PNG to 5MB</p>
+                          <label className="mt-4 inline-block cursor-pointer rounded-md bg-stone-700 px-4 py-2 text-bone-100 hover:bg-stone-600">
+                            Select File
+                            <input
+                              type="file"
+                              id="paymentProof"
+                              name="attachment"
+                              accept="image/png, image/jpeg, image/jpg"
+                              onChange={handleFileChange}
+                              className="hidden"
+                            />
+                          </label>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
 
-                {/* Hidden fields for Formspree */}
                 <input type="hidden" name="rank" value={rank} />
                 <input type="hidden" name="price" value={price} />
                 <input type="hidden" name="transactionId" value={transactionId} />
@@ -339,7 +326,7 @@ export default function PurchasePage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full rounded-md bg-emerald-600 py-3 font-minecraft text-white transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="w-full rounded-md bg-emerald-600 py-3 font-minecraft text-white hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center">
@@ -347,135 +334,14 @@ export default function PurchasePage() {
                       Processing...
                     </span>
                   ) : (
-                    "Continue to Payment"
+                    "Confirm Purchase"
                   )}
                 </button>
               </form>
             </div>
           )}
 
-          {/* Payment Step */}
-          {step === "payment" && (
-            <div className="rounded-lg bg-black/40 p-6 backdrop-blur-sm">
-              <div className="mb-6 text-center">
-                <h2 className="mb-2 font-minecraft text-2xl text-bone-100">Scan QR Code to Pay</h2>
-                <p className="text-bone-200">
-                  Scan the QR code below with your local bank app to complete the payment of ${price}
-                </p>
-              </div>
-
-              <div className="mb-6 flex justify-center">
-                <div className="rounded-lg bg-white p-4">
-                  {/* This is a placeholder QR code. In a real implementation, you would generate a QR code for the specific payment */}
-                  <img src="https://media.discordapp.net/attachments/560806550315204609/1356919910340628533/aba_mobile_1743585233369.png?ex=67ee51a4&is=67ed0024&hm=09b862d3ab3908adbaefc34de6b2c339e326b2cf1fb9eb4ad54af869eaa02678&=&format=webp&quality=lossless&width=1104&height=886"/>
-                </div>
-              </div>
-
-              <div className="mb-6 rounded-md bg-stone-800/80 p-4">
-                <div className="mb-4">
-                  <div className="mb-2 flex justify-between">
-                    <span className="font-minecraft text-bone-100">Transaction ID</span>
-                    <div className="flex items-center">
-                      <span className="mr-2 font-minecraft text-emerald-400">{transactionId}</span>
-                      <CopyButton textToCopy={transactionId} />
-                    </div>
-                  </div>
-                  <p className="text-sm text-bone-300">Please include this Transaction ID in your payment reference</p>
-                </div>
-
-                <div className="mb-2 flex justify-between">
-                  <span className="font-minecraft text-bone-100">Amount</span>
-                  <span className="font-minecraft text-emerald-400">${price}</span>
-                </div>
-
-                <div className="mb-2 flex justify-between">
-                  <span className="font-minecraft text-bone-100">Bank Account</span>
-                  <div className="flex items-center">
-                    <span className="mr-2 text-bone-100">500 036 264</span>
-                    <CopyButton textToCopy="1234-5678-9012-3456" />
-                  </div>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className="font-minecraft text-bone-100">Account Name</span>
-                  <span className="text-bone-100">KEO VUTHTHANA</span>
-                </div>
-              </div>
-
-              {/* Payment Proof Upload */}
-              <div className="mb-6">
-                <label htmlFor="paymentProof" className="mb-2 block font-minecraft text-bone-100">
-                  Upload Payment Proof
-                </label>
-                <div className={`mb-4 flex flex-col items-center justify-center rounded-md border-2 border-dashed ${paymentProofPreview ? 'border-emerald-500' : 'border-stone-700'} p-6`}>
-                  {paymentProofPreview ? (
-                    <div className="w-full">
-                      <div className="mb-4 flex justify-center">
-                        <img 
-                          src={paymentProofPreview} 
-                          alt="Payment proof preview" 
-                          className="max-h-48 rounded-md object-contain" 
-                        />
-                      </div>
-                      <div className="flex justify-center">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setPaymentProof(null)
-                            setPaymentProofPreview(null)
-                          }}
-                          className="rounded-md bg-stone-700 px-4 py-2 text-bone-100 transition-colors hover:bg-stone-600"
-                        >
-                          Remove Image
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="text-center">
-                      {/* <Upload className="mx-auto mb-4 h-10 w-10 text-stone-500" /> */}
-                      <p className="mb-2 text-bone-200">Upload a screenshot of your payment</p>
-                      <p className="text-sm text-bone-300">JPG, JPEG & PNG to 5MB</p>
-                      <label className="mt-4 inline-block cursor-pointer rounded-md bg-stone-700 px-4 py-2 text-bone-100 transition-colors hover:bg-stone-600">
-                        Select File
-                        <input
-                          type="file"
-                          id="paymentProof"
-                          name="attachment" 
-                          accept="image/png, image/jpeg, image/jpg" 
-                          onChange={handleFileChange}
-                          className="hidden"
-                        />
-                      </label>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="mb-4 rounded-md bg-amber-900/30 p-4">
-                <p className="text-sm text-amber-200">
-                  After completing the payment, upload your payment proof and click the button below. Your purchase will be processed
-                  within 5 minutes after confirmation.
-                </p>
-              </div>
-
-              <button
-                onClick={handlePaymentConfirmation}
-                disabled={isLoading || !paymentProof}
-                className="w-full rounded-md bg-emerald-600 py-3 font-minecraft text-white transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {isLoading ? (
-                  <span className="flex items-center justify-center">
-                    <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-                    Verifying Payment...
-                  </span>
-                ) : (
-                  "I've Completed the Payment"
-                )}
-              </button>
-            </div>
-          )}
-
-          {/* Confirmation Step */}
+          {/* Confirmation Step (unchanged) */}
           {step === "confirmation" && (
             <div className="rounded-lg bg-black/40 p-6 text-center backdrop-blur-sm">
               <div className="mb-6 flex justify-center">
@@ -516,23 +382,23 @@ export default function PurchasePage() {
               </div>
 
               <div className="mb-6 rounded-md bg-yellow-400/30 p-4">
-                  <p className="text-sm text-yellow-200">
-                    Your rank benefits are currently being verified. The expected waiting time is between 5 to 30 minutes. 
-                    If the waiting time exceeds this period, 
-                    please reach out to our staff via our Discord channel with your Transaction ID for assistance.
-                  </p>
-                </div>
+                <p className="text-sm text-yellow-200">
+                  Your rank benefits are currently being verified. The expected waiting time is between 5 to 30 minutes. 
+                  If the waiting time exceeds this period, 
+                  please reach out to our staff via our Discord channel with your Transaction ID for assistance.
+                </p>
+              </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
                   to="/"
-                  className="flex-1 rounded-md bg-emerald-600 py-3 font-minecraft text-white transition-colors hover:bg-emerald-500"
+                  className="flex-1 rounded-md bg-emerald-600 py-3 font-minecraft text-white hover:bg-emerald-500"
                 >
                   Return to Home
                 </Link>
                 <Link
                   to="/store"
-                  className="flex-1 rounded-md bg-stone-700 py-3 font-minecraft text-white transition-colors hover:bg-stone-600"
+                  className="flex-1 rounded-md bg-stone-700 py-3 font-minecraft text-white hover:bg-stone-600"
                 >
                   Back to Store
                 </Link>
@@ -542,11 +408,10 @@ export default function PurchasePage() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="relative z-10 bg-black/60 px-4 py-6 text-center backdrop-blur-sm">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm text-bone-400">
-            &copy; {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
+            © {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
           </p>
         </div>
       </footer>

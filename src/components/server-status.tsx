@@ -12,19 +12,13 @@ export default function ServerStatus() {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        // In a real implementation, you would fetch the server status from a Minecraft server API
-        // For this demo, we'll simulate a response
+        const response = await fetch("https://api.mcstatus.io/v2/status/java/bonesmp.club:25565")
+        const data = await response.json()
 
-        // Simulate API call delay
-        await new Promise((resolve) => setTimeout(resolve, 1500))
-
-        // Simulate server being online with random player count
-        const isOnline = Math.random() > 0.2 // 80% chance of being online
-
-        if (isOnline) {
+        if (data.online) {
           setStatus("online")
-          setPlayerCount(Math.floor(Math.random() * 30))
-          setMaxPlayers(50)
+          setPlayerCount(data.players.online)
+          setMaxPlayers(data.players.max)
         } else {
           setStatus("offline")
           setPlayerCount(null)
@@ -35,6 +29,9 @@ export default function ServerStatus() {
       } catch (error) {
         console.error("Error checking server status:", error)
         setStatus("offline")
+        setPlayerCount(null)
+        setMaxPlayers(null)
+        setLastUpdated(new Date())
       }
     }
 
@@ -93,4 +90,3 @@ export default function ServerStatus() {
     </div>
   )
 }
-
