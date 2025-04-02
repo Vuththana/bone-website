@@ -6,7 +6,7 @@ import AboutPage from "./pages/About";
 import EventPage from "./pages/Event";
 import LeaderboardsPage from "./pages/Leaderboards";
 import PurchasePage from "./pages/Purchase/Purchase";
-import { Analytics } from "@vercel/analytics/react"
+
 
 export default function App() {
   return (
@@ -18,7 +18,6 @@ export default function App() {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/event" element={<EventPage />} />
       <Route path="/store/purchase" element={<PurchasePage />} />
-      <Analytics/>
     </Routes>
   );
 }

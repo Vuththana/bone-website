@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css'
 import App from './App.tsx'
 import Navbar from "./components/navbar.tsx";
-
+import { Analytics } from '@vercel/analytics/react';
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -15,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </head>
       <Navbar />
       <App />
+      <Analytics />
     </BrowserRouter>
   </React.StrictMode>
 );
