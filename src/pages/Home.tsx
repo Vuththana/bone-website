@@ -93,7 +93,7 @@ export default function Home() {
           {/* About Preview Section */}
           <section className="px-4 py-16">
             <div className="mx-auto max-w-4xl rounded-lg bg-black/40 p-6 backdrop-blur-sm">
-              <h2 className="mb-6 text-center font-minecraft text-3xl text-bone-100">ABOUT BONE SMP</h2>
+              <h2 className="mb-6 text-center font-minecraft text-3xl text-bone-100">ABOUT BONE NETWORK</h2>
               <p className="mb-4 text-lg text-bone-200">
                 Established in 2023, Bone Network is a community-focused Minecraft server offering a unique survival
                 experience with a twist. Our server features balanced gameplay, and a friendly community.
