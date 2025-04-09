@@ -93,20 +93,20 @@ export default function AboutPage() {
               <StaffCard
                 name="GorosXD"
                 role="Owner & Developer"
-                avatar="https://i.imgur.com/S0tmtj8.png"
+                avatar="https://i.imgur.com/pTF0cSw.png"
                 description="Server owner and main developer. Responsible for server maintenance and custom plugins."
               />
               <StaffCard
                 name="Sasquatchhhh"
                 role="Admin"
-                avatar="https://i.imgur.com/Ma5XBFY.png"
+                avatar="https://i.imgur.com/ARyho0i.png"
                 description="Handles player support, moderation, and community events. Always ready to help!"
               />
               <StaffCard
-                name="FragBot_"
-                role="Builder"
-                avatar="https://i.imgur.com/tryr5ak.png"
-                description="Creates amazing spawn builds and custom structures throughout the world."
+                name="F1awlessx_"
+                role="Helper"
+                avatar="https://i.imgur.com/5vKWzKw.png"
+                description="Assists players with in-game questions, helps maintain a friendly environment, and provides support for various server-related issues."
               />
             </div>
           </div>
