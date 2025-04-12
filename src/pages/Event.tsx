@@ -47,6 +47,27 @@ export default function EventPage() {
     <div className="relative min-h-screen overflow-hidden bg-stone-900 text-stone-100">
       <AnimatedBackground />
 
+      {/* Minecraft-style dirt background overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-10"
+        style={{
+          backgroundImage: "url('https://th.bing.com/th/id/OIP.PTUHQP8DQC50ZE8FW67MaAHaHa?rs=1&pid=ImgDetMain')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "64px 64px",
+        }}
+      ></div>
+
+      {/* Bone texture overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-5"
+        style={{
+          backgroundImage:
+            "url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f2/Bone_Block_JE2_BE2.png')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px 128px",
+        }}
+      ></div>
+      
       <main className="relative z-10 px-4 py-16 pt-16">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 flex items-center">
