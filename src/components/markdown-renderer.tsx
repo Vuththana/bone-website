@@ -12,17 +12,21 @@ export default function MarkdownRenderer({ content }: MarkdownRendererProps) {
 
   useEffect(() => {
     setMounted(true)
-    // Configure marked options
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-    })
-    
-    // Convert markdown to sanitized HTML
-    const parsedHtml = marked.parse(content)
-    const cleanHtml = DOMPurify.sanitize(parsedHtml)
-    setHtmlContent(cleanHtml)
+  
+    const convertMarkdown = async () => {
+      marked.setOptions({
+        breaks: true,
+        gfm: true,
+      })
+  
+      const parsedHtml = await marked.parse(content)
+      const cleanHtml = DOMPurify.sanitize(parsedHtml)
+      setHtmlContent(cleanHtml)
+    }
+  
+    convertMarkdown()
   }, [content])
+  
 
   if (!mounted) {
     return null

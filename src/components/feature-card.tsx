@@ -10,7 +10,7 @@ interface FeatureCardProps {
   translationKey: string
 }
 
-export default function FeatureCard({ title, description, icon, translationKey }: FeatureCardProps) {
+export default function FeatureCard({ icon, translationKey }: FeatureCardProps) {
   const { t } = useLanguage()
 
   const getIcon = () => {
