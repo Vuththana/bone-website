@@ -44,7 +44,7 @@ export default function ServerStatus() {
   }, [])
 
   return (
-    <div className="animate-fadeIn rounded-lg bg-black/40 p-4 backdrop-blur-sm">
+    <div className="animate-fadeIn rounded-none border-2 border-bone-700 bg-black/40 p-4 backdrop-blur-sm">
       <div className="flex items-center justify-center">
         <div className="flex items-center">
           <Server className="mr-2 h-5 w-5" />

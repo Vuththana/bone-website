@@ -7,6 +7,7 @@ interface StoreItemProps {
   features: string[]
   popular?: boolean
   color?: string
+  image?: string
 }
 
 export default function StoreItem({
@@ -15,6 +16,7 @@ export default function StoreItem({
   features,
   popular = false,
   color = "bg-gradient-to-br from-emerald-400 to-emerald-600",
+  image,
 }: StoreItemProps) {
   return (
     <div className={`relative rounded-lg bg-black/40 p-1 backdrop-blur-sm ${popular ? "ring-2 ring-amber-400" : ""}`}>
@@ -22,6 +24,13 @@ export default function StoreItem({
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-black">
           MOST POPULAR
         </div>
+      )}
+      {image && (
+        <img
+          src={image}
+          alt={`${title} kit preview`}
+          className="mb-4 w-full rounded-md object-contain max-h-48"
+        />
       )}
       <div className="rounded-md bg-stone-800/80 p-5">
         <div className={`mb-4 rounded-md ${color} p-4 text-center`}>

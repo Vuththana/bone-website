@@ -1,12 +1,46 @@
 import { ChevronLeft, Shield } from "lucide-react"
 import AnimatedBackground from "../components/animated-background"
+import { useLanguage } from "@/contexts/language-context"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion"
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 export default function RulesPage() {
+  const { t } = useLanguage()
+  const [mounted, setMounted] = useState(false)
+
+    // Prevent hydration mismatch
+    useEffect(() => {
+      setMounted(true)
+    }, [])
+  
+    if (!mounted) {
+      return null
+    }
   return (
     <div className="relative min-h-screen overflow-hidden bg-stone-900 text-stone-100">
       <AnimatedBackground />
+
+      {/* Minecraft-style dirt background overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-10"
+        style={{
+          backgroundImage: "url('https://th.bing.com/th/id/OIP.PTUHQP8DQC50ZE8FW67MaAHaHa?rs=1&pid=ImgDetMain')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "64px 64px",
+        }}
+      ></div>
+
+      {/* Bone texture overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-5"
+        style={{
+          backgroundImage:
+            "url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f2/Bone_Block_JE2_BE2.png')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px 128px",
+        }}
+      ></div>
 
       <main className="relative z-10 px-4 py-16 pt-16">
         <div className="mx-auto max-w-4xl">
@@ -18,10 +52,9 @@ export default function RulesPage() {
           </div>
 
           <div className="mb-12 text-center">
-            <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">SERVER RULES</h1>
+            <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">{t("title.title")}</h1>
             <p className="mx-auto max-w-2xl text-lg text-bone-200">
-              To ensure everyone has a great experience on Bone Network, please follow these rules. Failure to comply may
-              result in temporary or permanent bans.
+              {t("title.description")}
             </p>
           </div>
 
@@ -31,16 +64,13 @@ export default function RulesPage() {
                 <AccordionTrigger className="font-minecraft text-xl text-bone-100 hover:text-bone-50">
                   <div className="flex items-center">
                     <Shield className="mr-2 h-5 w-5 text-emerald-400" />
-                    General Conduct
+                    {t("general_conduct.general_conduct")}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-bone-200">
                   <ul className="list-inside list-disc space-y-2">
-                    <li>Be respectful to all players and staff members.</li>
-                    <li>No harassment, bullying, or discrimination of any kind.</li>
-                    <li>No excessive swearing or inappropriate language.</li>
-                    <li>No spamming in chat or using all caps excessively.</li>
-                    <li>English is the primary language in public chat.</li>
+                    <li>{t("general_conduct.respectful")}</li>
+                    <li>{t("general_conduct.no_spam")}</li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
@@ -49,15 +79,14 @@ export default function RulesPage() {
                 <AccordionTrigger className="font-minecraft text-xl text-bone-100 hover:text-bone-50">
                   <div className="flex items-center">
                     <Shield className="mr-2 h-5 w-5 text-emerald-400" />
-                    Gameplay Rules
+                    {t("gameplay.gameplay_rules")}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-bone-200">
                   <ul className="list-inside list-disc space-y-2">
-                    <li>No griefing or stealing from other players.</li>
-                    <li>No hacking, cheating, or using modified clients that provide unfair advantages.</li>
-                    <li>No exploiting bugs or glitches. Report them to staff instead.</li>
-                    <li>No building offensive or inappropriate structures.</li>
+                    <li>{t("gameplay.no_cheating")}</li>
+                    <li>{t("gameplay.no_exploiting")}</li>
+                    <li>{t("gameplay.no_offensive_builds")}</li>
                   </ul> 
                 </AccordionContent>
               </AccordionItem>
@@ -66,12 +95,13 @@ export default function RulesPage() {
                 <AccordionTrigger className="font-minecraft text-xl text-bone-100 hover:text-bone-50">
                   <div className="flex items-center">
                     <Shield className="mr-2 h-5 w-5 text-emerald-400" />
-                    Building Guidelines
+                    {t("building.building_guidelines")}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-bone-200">
                   <ul className="list-inside list-disc space-y-2">
-                    <li>No massive redstone contraptions that cause lag without staff approval.</li>
+                    <li>{t("building.redstone")}</li>
+                    <li>{t("gameplay.no_offensive_builds")}</li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
@@ -80,14 +110,12 @@ export default function RulesPage() {
                 <AccordionTrigger className="font-minecraft text-xl text-bone-100 hover:text-bone-50">
                   <div className="flex items-center">
                     <Shield className="mr-2 h-5 w-5 text-emerald-400" />
-                    Economy & Trading
+                    {t("eco.economy_trading")}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-bone-200">
                   <ul className="list-inside list-disc space-y-2">
-                    <li>Honor all agreements made for trades or services.</li>
-                    <li>No artificially inflating prices or monopolizing resources.</li>
-                    <li>The server economy is monitored - exploits will result in bans.</li>
+                    <li>{t("eco.honor_agreements")}</li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
@@ -96,14 +124,13 @@ export default function RulesPage() {
                 <AccordionTrigger className="font-minecraft text-xl text-bone-100 hover:text-bone-50">
                   <div className="flex items-center">
                     <Shield className="mr-2 h-5 w-5 text-emerald-400" />
-                    Server Performance
+                      {t("server.server_performance")}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-bone-200">
                   <ul className="list-inside list-disc space-y-2">
-                    <li>No creating lag machines or devices that negatively impact server performance.</li>
-                    <li>Keep entity counts reasonable (farms, animals, etc.).</li>
-                    <li>Report any performance issues to staff.</li>
+                    <li>{t("server.no_lag_machines")}</li>
+                    <li>{t("server.report_performance_issues")}</li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
@@ -112,32 +139,26 @@ export default function RulesPage() {
                 <AccordionTrigger className="font-minecraft text-xl text-bone-100 hover:text-bone-50">
                   <div className="flex items-center">
                     <Shield className="mr-2 h-5 w-5 text-emerald-400" />
-                    Consequences
+                    {t("punishment.title")}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-bone-200">
-                  <p className="mb-2">Rule violations will be handled according to severity:</p>
+                  <p className="mb-2">{t("punishment.title1")}</p>
                   <ul className="list-inside list-disc space-y-2">
                     <li>
-                      <span className="font-bold text-yellow-400">Warning:</span> First minor offense
+                      <span className="font-bold text-yellow-400">{t("punishment.warning_label")}:</span> {t("punishment.warning_desc")}
                     </li>
                     <li>
-                      <span className="font-bold text-orange-400">Temporary Ban (1-7 days):</span> Repeated minor
-                      offenses or moderate violations
+                      <span className="font-bold text-orange-400">{t("punishment.temp_ban_label")}:</span> {t("punishment.temp_ban_desc")}
                     </li>
                     <li>
-                      <span className="font-bold text-red-400">Long-term Ban (30+ days):</span> Serious violations or
-                      continued rule-breaking
+                      <span className="font-bold text-red-400">{t("punishment.long_ban_label")}:</span> {t("punishment.long_ban_desc")}
                     </li>
                     <li>
-                      <span className="font-bold text-red-600">Permanent Ban:</span> Extreme violations, hacking, or
-                      repeated serious offenses
+                      <span className="font-bold text-red-600">{t("punishment.perm_ban_label")}:</span> {t("punishment.perm_ban_desc")}
                     </li>
                   </ul>
-                  <p className="mt-4">
-                    All bans can be appealed on our Discord server. The staff team has final say in all moderation
-                    decisions.
-                  </p>
+                <p className="mt-4">{t("punishment.appeal_note")}</p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -167,7 +188,7 @@ export default function RulesPage() {
       {/* Footer */}
       <footer className="relative z-10 bg-black/60 px-4 py-6 text-center backdrop-blur-sm">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm text-bone-400">
+          <p className="font-minecraft text-sm text-bone-400">
             &copy; {new Date().getFullYear()} Bone Network. Not affiliated with Mojang AB.
           </p>
         </div>
@@ -175,4 +196,3 @@ export default function RulesPage() {
     </div>
   )
 }
-

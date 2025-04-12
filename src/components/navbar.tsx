@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
+import LanguageSwitcher from "./language-switcher"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const { t } = useLanguage()
 
   // Handle scroll effect for navbar background
   useEffect(() => {
@@ -34,53 +37,58 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img
-                src="https://mystickermania.com/cdn/stickers/minecraft/minecraft-bone-512x512.png"
+                src="https://i.imgur.com/52l7hEL.png"
                 alt="Bone SMP Logo"
-                className="h-7 w-auto"
+                className="h-10 w-auto"
               />
               <span className="ml-3 font-minecraft text-xl text-bone-100">BONE NETWORK</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
+          <div className="hidden md:flex md:items-center">
+            <div className="flex items-center space-x-4">
               <Link
                 to="/"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
-                HOME
+                {t("nav.home")}
               </Link>
               <Link
-                to="/store"
+                to="/news"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
-                STORE
+                {t("nav.news")}
               </Link>
               <Link
                 to="/event"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
-                EVENT
+                EVENTS
+              </Link>
+              <Link
+                to="/store"
+                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+              >
+                {t("nav.store")}
               </Link>
               <Link
                 to="/leaderboards"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
-                onClick={() => setIsMenuOpen(false)}
               >
-                LEADEBOARDS
+                {t("nav.leaderboards")}
               </Link>
               <Link
                 to="/rules"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
-                RULES
+                {t("nav.rules")}
               </Link>
               <Link
                 to="/about"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
-                ABOUT
+                {t("nav.about")}
               </Link>
               <a
                 href="https://discord.gg/example"
@@ -88,16 +96,20 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 className="font-minecraft bg-emerald-700 text-white hover:bg-emerald-600 px-4 py-2 rounded-md text-sm transition-colors"
               >
-                JOIN DISCORD
+                {t("nav.join_discord")}
               </a>
+              <div className="ml-2">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <LanguageSwitcher />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-bone-300 hover:text-bone-100 hover:bg-stone-800 focus:outline-none"
+              className="ml-2 inline-flex items-center justify-center p-2 rounded-md text-bone-300 hover:text-bone-100 hover:bg-stone-800 focus:outline-none"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -115,45 +127,39 @@ const Navbar = () => {
       <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-stone-900/95 backdrop-blur-sm">
           <Link
-            to="/"
+            href="/"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            HOME
+            {t("nav.home")}
           </Link>
           <Link
-            to="/store"
+            href="/store"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            STORE
+            {t("nav.store")}
           </Link>
           <Link
-                to="/event"
-                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
-              >
-                EVENT
-          </Link>
-          <Link
-            to="/leaderboards"
+            href="/leaderboards"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            LEADEBOARDS
+            {t("nav.leaderboards")}
           </Link>
           <Link
-            to="/rules"
+            href="/rules"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            RULES
+            {t("nav.rules")}
           </Link>
           <Link
-            to="/about"
+            href="/about"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            ABOUT
+            {t("nav.about")}
           </Link>
           <a
             href="https://discord.gg/example"
@@ -162,7 +168,7 @@ const Navbar = () => {
             className="font-minecraft bg-emerald-700 text-white hover:bg-emerald-600 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            JOIN DISCORD
+            {t("nav.join_discord")}
           </a>
         </div>
       </div>
@@ -171,4 +177,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-

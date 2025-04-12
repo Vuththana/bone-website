@@ -257,6 +257,20 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+.prose h1 {
+  @apply mb-6 text-3xl text-bone-100;
+}
+
+.prose h2 {
+  @apply mb-4 mt-8 text-2xl text-bone-100;
+}
+
+.prose a {
+  @apply text-emerald-400 hover:underline;
+}
+
+/* Add other custom styles as needed */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

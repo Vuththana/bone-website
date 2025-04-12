@@ -14,15 +14,15 @@ interface Event {
 }
 
 const events: Event[] = [
-  {
-    date: "2025-04-25",
-    title: "Ender Dragon Raid",
-    time: "19:00 UTC",
-    location: "The End Portal",
-    rewards: ["Dragon Egg Trophy", "Elytra", "64 Diamonds"],
-    participants: 23,
-    description: "Server-wide coordinated attack on the Ender Dragon. Teams will be formed with specific roles. Bring your best gear!"
-  },
+  // {
+  //   date: "2025-04-25",
+  //   title: "Ender Dragon Raid",
+  //   time: "19:00 UTC",
+  //   location: "The End Portal",
+  //   rewards: ["Dragon Egg Trophy", "Elytra", "64 Diamonds"],
+  //   participants: 23,
+  //   description: "Server-wide coordinated attack on the Ender Dragon. Teams will be formed with specific roles. Bring your best gear!"
+  // },
   // ... other events
 ]
 
@@ -176,7 +176,8 @@ export default function EventPage() {
             <div className="flex items-center justify-center gap-4">
               <div className="rounded-lg bg-black/60 p-4">
                 <p className="font-minecraft text-bone-100">SERVER IP</p>
-                <p className="text-xl text-emerald-400">bonesmp.club</p>
+                {/* <p className="text-xl text-emerald-400">bonesmp.club</p> */}
+                <p className="text-xl text-emerald-400">COMING SOON</p>
               </div>
             </div>
           </div>

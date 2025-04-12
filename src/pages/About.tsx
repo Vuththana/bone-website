@@ -3,11 +3,46 @@ import { ChevronLeft, Calendar, Users, Server, Award } from "lucide-react"
 import AnimatedBackground from "../components/animated-background"
 import StaffCard from "../components/staff-card"
 import { Link } from "react-router-dom"
+import { useLanguage } from "@/contexts/language-context"
+import { useEffect, useState } from "react"
 
 export default function AboutPage() {
+  const { t } = useLanguage()
+  const [mounted, setMounted] = useState(false)
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-stone-900 text-stone-100">
       <AnimatedBackground />
+
+      {/* Minecraft-style dirt background overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-10"
+        style={{
+          backgroundImage: "url('https://th.bing.com/th/id/OIP.PTUHQP8DQC50ZE8FW67MaAHaHa?rs=1&pid=ImgDetMain')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "64px 64px",
+        }}
+      ></div>
+
+      {/* Bone texture overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-5"
+        style={{
+          backgroundImage:
+            "url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f2/Bone_Block_JE2_BE2.png')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px 128px",
+        }}
+      ></div>
 
       <main className="relative z-10 px-4 py-16 pt-16">
         <div className="mx-auto max-w-4xl">
@@ -19,94 +54,57 @@ export default function AboutPage() {
           </div>
 
           <div className="mb-12 text-center">
-            <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">ABOUT US</h1>
+            <h1 className="mb-4 font-minecraft text-4xl text-bone-100 md:text-5xl">{t("about.title")}</h1>
             <p className="mx-auto max-w-2xl text-lg text-bone-200">
-              Learn more about Bone Network, our history, and the team behind the server.
+            {t("about.description")}.
             </p>
           </div>
 
           <div className="mb-12 rounded-lg bg-black/40 p-6 backdrop-blur-sm">
-            <h2 className="mb-6 font-minecraft text-2xl text-bone-100">OUR STORY</h2>
+            <h2 className="mb-6 font-minecraft text-2xl text-bone-100">{t("about.story")}</h2>
             <div className="space-y-4 text-bone-200">
               <p>
-              Founded in early 2023 by a group of friends, Bone Network began as a small private server 
-              with a vision—to create a unique and immersive Minecraft survival experience. 
-              What started as a passion project quickly grew into a thriving community of builders, explorers, and adventurers.
+              {t("about.story_description")}
               </p>
               <p>
-              At Bone Network, we believe in fostering creativity, community, and fair play. 
-              Our server is designed to provide a balanced and engaging gameplay experience, 
-              where players can unleash their creativity while embracing the challenges of survival Minecraft.
+              {t("about.story_description1")}
               </p>
               <p>
-              The name "Bone" was inspired by the iconic Minecraft item. Whether obtained from defeating skeletons or mining bone blocks, 
-              it symbolizes both perseverance and resourcefulness—qualities that define our community. 
-              Plus, it's short, memorable, and uniquely ours.
+              {t("about.story_description2")}
               </p>
               <p>
-                Join us and be part of the adventure!
+              {t("about.story_description3")}
               </p>
             </div>
           </div>
 
-          <div className="mb-12 grid gap-6 md:grid-cols-2">
-            <div className="rounded-lg bg-black/40 p-6 backdrop-blur-sm">
-              <div className="mb-4 flex items-center">
-                <Server className="mr-2 h-6 w-6 text-emerald-400" />
-                <h2 className="font-minecraft text-xl text-bone-100">SERVER SPECS</h2>
-              </div>
-              <ul className="space-y-2 text-bone-200">
-                <li>• 16GB Dedicated RAM</li>
-                <li>• High-performance CPU</li>
-                <li>• 99.9% Uptime</li>
-                <li>• DDoS Protection</li>
-                <li>• Daily Backups</li>
-                <li>• Vanilla-friendly Experience</li>
-              </ul>
-            </div>
-
-            <div className="rounded-lg bg-black/40 p-6 backdrop-blur-sm">
-              <div className="mb-4 flex items-center">
-                <Calendar className="mr-2 h-6 w-6 text-emerald-400" />
-                <h2 className="font-minecraft text-xl text-bone-100">SERVER EVENTS</h2>
-              </div>
-              <ul className="space-y-2 text-bone-200">
-                <li>• Weekly Building Competitions</li>
-                <li>• Monthly PvP Tournaments</li>
-                <li>• Seasonal Special Events</li>
-                <li>• Community Projects</li>
-                <li>• Boss Battles</li>
-              </ul>
-            </div>
-          </div>
 
           <div className="mb-12 rounded-lg bg-black/40 p-6 backdrop-blur-sm">
             <div className="mb-6 flex items-center">
               <Users className="mr-2 h-6 w-6 text-emerald-400" />
-              <h2 className="font-minecraft text-2xl text-bone-100">OUR TEAM</h2>
+              <h2 className="font-minecraft text-2xl text-bone-100">{t("team.title")}</h2>
             </div>
             <p className="mb-6 text-bone-200">
-              Meet the dedicated staff members who keep Bone Network running smoothly and ensure everyone has a great
-              experience.
+              {t("team.description")}
             </p>
             <div className="grid gap-6 md:grid-cols-2">
               <StaffCard
                 name="GorosXD"
                 role="Owner & Developer"
                 avatar="https://i.imgur.com/pTF0cSw.png"
-                description="Server owner and main developer. Responsible for server maintenance and custom plugins."
+                description={t("team.gorosxd_description")}
               />
               <StaffCard
                 name="Sasquatchhhh"
                 role="Admin"
                 avatar="https://i.imgur.com/ARyho0i.png"
-                description="Handles player support, moderation, and community events. Always ready to help!"
+                description={t("team.sas_description")}
               />
               <StaffCard
-                name="F1awlessx_"
+                name="Jakain_"
                 role="Helper"
-                avatar="https://i.imgur.com/5vKWzKw.png"
-                description="Assists players with in-game questions, helps maintain a friendly environment, and provides support for various server-related issues."
+                avatar="https://i.imgur.com/DSTKpHP.png"
+                description={t("team.jakain_description")}
               />
             </div>
           </div>
@@ -123,7 +121,9 @@ export default function AboutPage() {
             <div className="flex justify-center">
               <div className="rounded-lg bg-black/60 p-4 text-center">
                 <p className="mb-2 font-minecraft text-xl text-bone-100">SERVER IP</p>
-                <p className="text-xl text-emerald-400">bonesmp.club</p>
+                {/* <p className="text-xl text-emerald-400">JAVA: bonesmp.club</p>
+                <p className="text-xl text-emerald-400">BEDROCK: bonesmp.club</p> */}
+                <p className="text-xl text-emerald-400">COMING SOON</p>
               </div>
             </div>
           </div>
