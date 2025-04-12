@@ -127,35 +127,47 @@ const Navbar = () => {
       <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-stone-900/95 backdrop-blur-sm">
           <Link
-            href="/"
+            to="/"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.home")}
           </Link>
           <Link
-            href="/store"
+                to="/news"
+                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+              >
+                {t("nav.news")}
+              </Link>
+              <Link
+                to="/event"
+                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+              >
+                EVENTS
+              </Link>
+          <Link
+            to="/store"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.store")}
           </Link>
           <Link
-            href="/leaderboards"
+            to="/leaderboards"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.leaderboards")}
           </Link>
           <Link
-            href="/rules"
+            to="/rules"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.rules")}
           </Link>
           <Link
-            href="/about"
+            to="/about"
             className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >

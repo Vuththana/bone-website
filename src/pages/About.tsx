@@ -1,5 +1,5 @@
 
-import { ChevronLeft, Calendar, Users, Server, Award } from "lucide-react"
+import { ChevronLeft, Users, Award } from "lucide-react"
 import AnimatedBackground from "../components/animated-background"
 import StaffCard from "../components/staff-card"
 import { Link } from "react-router-dom"
