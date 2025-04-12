@@ -171,7 +171,7 @@ export default function RulesPage() {
               server.
             </p>
             <a
-              href="https://discord.gg/example"
+              href="https://discord.gg/RBN8khMGYc"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-md bg-[#5865F2] px-6 py-3 font-minecraft text-lg font-bold text-white transition-all hover:bg-[#4a56e3]"

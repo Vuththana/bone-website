@@ -6,6 +6,7 @@ import App from './App.tsx'
 import Navbar from "./components/navbar.tsx";
 import { Analytics } from '@vercel/analytics/react';
 import { LanguageProvider } from "./contexts/language-context.tsx";
+import AdminNotification from "./components/admin-notification.tsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </head>
           <LanguageProvider>
             <Navbar />
+            <AdminNotification />
             <App />
           </LanguageProvider>
       <Analytics />

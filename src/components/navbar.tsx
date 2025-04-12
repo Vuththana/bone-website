@@ -91,7 +91,7 @@ const Navbar = () => {
                 {t("nav.about")}
               </Link>
               <a
-                href="https://discord.gg/example"
+                href="https://discord.gg/RBN8khMGYc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-minecraft bg-emerald-700 text-white hover:bg-emerald-600 px-4 py-2 rounded-md text-sm transition-colors"
@@ -135,13 +135,13 @@ const Navbar = () => {
           </Link>
           <Link
                 to="/news"
-                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
               >
-                {t("nav.news")}
-              </Link>
+              {t("nav.news")}
+          </Link>
               <Link
                 to="/event"
-                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
+                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
               >
                 EVENTS
               </Link>
@@ -174,7 +174,7 @@ const Navbar = () => {
             {t("nav.about")}
           </Link>
           <a
-            href="https://discord.gg/example"
+            href="https://discord.gg/RBN8khMGYc"
             target="_blank"
             rel="noopener noreferrer"
             className="font-minecraft bg-emerald-700 text-white hover:bg-emerald-600 block px-3 py-2 rounded-md text-base transition-colors"

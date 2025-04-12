@@ -140,18 +140,17 @@ const translations: Translations = {
     "nav.leaderboards": "តារាងពិន្ទុ",
     "nav.rules": "ច្បាប់",
     "nav.about": "អំពី",
-    "nav.join_discord": "ចូលរួម DISCORD",
+    "nav.join_discord": "JOIN DISCORD",
 
     // Homepage
     "home.title": "BONE NETWORK",
     "home.subtitle": "Dig Deep. Build Big. Survive Together.",
     "home.server_features": "លក្ខណៈពិសេស នៃ Server",
     "home.about_bone": "អំពី Bone Network",
-    "home.about_text1":
-      "បង្កើតឡើងនៅឆ្នាំ 2024 Bone Network គឺជា Server Minecraft ដែលផ្តោតលើសហគមន៍ដែលផ្តល់នូវបទពិសោធន៍ Survival ដែលមានលក្ខណះថី្ម។ Server របស់យើងមាន Balanced Gameplay និង Friendly Community។",
+    "home.about_text1": "បង្កើតឡើងនៅឆ្នាំ 2024 Bone Network គឺជា Server Minecraft ដែលផ្តោតលើសហគមន៍ដែលផ្តល់នូវបទពិសោធន៍ Survival ដែលមានលក្ខណះថី្ម។ Server របស់យើងមាន Balanced Gameplay និង Friendly Community។",
     "home.learn_more": "ស្វែងយល់បន្ថែម",
-    "home.join_community": "ចូលរួមសហគមន៍របស់យើង",
-    "home.connect_players": "ភ្ជាប់ជាមួយអ្នកលេងផ្សេងទៀត និងទទួលបានព័ត៌មានថ្មីៗអំពី Server",
+    "home.join_community": "JOIN OUR COMMUNITY",
+    "home.connect_players": "Connect with other players and stay updated with server news",
     "home.discord": "Discord",
     "home.twitter": "Twitter",
 
@@ -174,7 +173,7 @@ const translations: Translations = {
 
     // News
     "news.title": "ព័ត៌មាន Server",
-    "news.subtitle": "បន្តទទួលបានព័ត៌មានថ្មីៗអំពីការផ Update និង Event នៅលើ Bone Network",
+    "news.subtitle": "បន្តទទួលបានព័ត៌មានថ្មីៗអំពីការ Update និង Event នៅលើ Bone Network",
     "news.read_more": "អានបន្ថែម",
     "news.back": "ត្រឡប់ទៅព័ត៌មាន",
     "news.posted_on": "បានប្រកាសនៅ",
@@ -233,7 +232,7 @@ const translations: Translations = {
     "punishment.perm_ban_label": "ការ Ban រហូត",
     "punishment.perm_ban_desc": "ការរំលោភបំពានធ្ងន់ធ្ងរ ហេក ឬបទល្មើសធ្ងន់ធ្ងរម្តងហើយម្តងទៀត",
     "punishment.appeal_note": "ការ Ban ទាំងអស់អាចប្តឹងនៅលើ Server Discord របស់យើង។ Staff Server មានសិទ្ធនៅក្នុងការសម្រេចចិត្តសម្របសម្រួលទាំងអស់ក្នុងវិធានច្បាប់​របស់​ Server។",
-    
+ 
     // About Page
     "about.title": "អំពីពួកយើង",
     "about.description": "សូមស្វែងយល់បន្ថែមអំពី Bone Network ប្រវត្តិសាស្រ្តរបស់យើង និងក្រុមការងាររបស់យើងខាងក្រោយសេវា។",
