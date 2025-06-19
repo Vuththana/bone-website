@@ -53,3 +53,5 @@ export default tseslint.config({
 })
 ```
 "# bone-website" 
+"# website-template-sale" 
+"# website-template-sale" 
