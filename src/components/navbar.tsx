@@ -121,12 +121,6 @@ const Navbar = () => {
           >
             {t("nav.home")}
           </Link>
-          <Link
-                to="/news"
-                className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
-              >
-              {t("nav.news")}
-          </Link>
               <Link
                 to="/event"
                 className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
@@ -139,13 +133,6 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.store")}
-          </Link>
-          <Link
-            to="/leaderboards"
-            className="font-minecraft text-bone-300 hover:text-bone-100 block px-3 py-2 rounded-md text-base transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {t("nav.leaderboards")}
           </Link>
           <Link
             to="/rules"
