@@ -80,7 +80,7 @@ export default function StorePage() {
                 price={10}
                 image="https://i.imgur.com/xyyTPNk.jpeg"
                 features={[
-                  "3 Home Locations",
+                  "5 Home Locations",
                   "8 Land Claims",
                   "Claim Baron Kit",
                   "Access to commands: /ec, /anvil",
@@ -94,8 +94,8 @@ export default function StorePage() {
                 price={15}
                 image="https://i.imgur.com/NDZuPRo.jpeg"
                 features={[
-                  "5 Home Locations",
-                  "16 Land Claims",
+                  "7 Home Locations",
+                  "10 Land Claims",
                   "Claim Duke Kit",
                   "Access to commands: /sell all, /ec, /anvil",
                 ]}
@@ -108,8 +108,8 @@ export default function StorePage() {
                 price={20}
                 image="https://i.imgur.com/me7XmbU.jpeg"
                 features={[
-                  "8 Home Locations",
-                  "20 Land Claims",
+                  "10 Home Locations",
+                  "12 Land Claims",
                   "Claim Prince Kit",
                   "Access to commands: /sell all, /ec, /anvil",
                 ]}
@@ -122,8 +122,8 @@ export default function StorePage() {
                 price={30}
                 image="https://i.imgur.com/ywxetpk.jpeg"
                 features={[
-                  "15 Home Locations",
-                  "25 Land Claims",
+                  "20 Home Locations",
+                  "16 Land Claims",
                   "Claim Emperor Kits",
                   "Access to commands: /sell all, /ec, /anvil",
                 ]}
@@ -135,8 +135,8 @@ export default function StorePage() {
                 title="Global"
                 price={50}
                 features={[
-                  "15 Home Locations",
-                  "25 Land Claims",
+                  "20 Home Locations",
+                  "16 Land Claims",
                   "Claim All Rank Kits",
                   "Access to commands: /sell all, /ec, /anvil",
                 ]}
