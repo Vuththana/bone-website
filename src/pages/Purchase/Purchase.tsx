@@ -256,8 +256,8 @@ export default function PurchasePage() {
                     <div className="mb-2 flex justify-between">
                       <span className="font-minecraft text-bone-100">Bank Account</span>
                       <div className="flex items-center">
-                        <span className="mr-2 text-bone-100">500 036 264</span>
-                        <CopyButton textToCopy="500 036 264" />
+                        <span className="mr-2 text-bone-100">009 223 387</span>
+                        <CopyButton textToCopy="009 223 387" />
                       </div>
                     </div>
                     <div className="flex justify-between">
