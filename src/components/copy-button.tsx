@@ -23,7 +23,7 @@ export default function CopyButton({ textToCopy }: CopyButtonProps) {
   return (
     <button
       onClick={handleCopy}
-      className="flex items-center justify-center rounded-md bg-stone-700 p-2 transition-colors hover:bg-stone-600 cursor-not-allowed"
+      className="flex items-center justify-center rounded-md bg-stone-700 p-2 transition-colors hover:bg-stone-600 cursor-pointer"
       aria-label={copied ? "Copied" : "Copy to clipboard"}
     >
       {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}

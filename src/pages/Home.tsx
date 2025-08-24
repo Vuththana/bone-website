@@ -65,8 +65,8 @@ export default function Home() {
 
           <div className="mb-8 flex items-center justify-center rounded-none border-2 border-bone-700 bg-black/40 p-4 backdrop-blur-sm">
             {/* <p className="mr-3 font-minecraft text-xl text-bone-100">bonesmp.club</p> */}
-            <p className="mr-3 font-minecraft text-xl text-bone-100">COMING SOON</p>
-            <CopyButton textToCopy="" />
+            <p className="mr-3 font-minecraft text-xl text-bone-100">bonenetwork.xyz</p>
+            <CopyButton textToCopy="bonenetwork.xyz" />
           </div>
 
           <ServerStatus />

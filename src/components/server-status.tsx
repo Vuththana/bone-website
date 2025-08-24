@@ -12,7 +12,7 @@ export default function ServerStatus() {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const response = await fetch("https://api.mcstatus.io/v2/status/java/bonesmp.club:25565")
+        const response = await fetch("https://api.mcstatus.io/v2/status/java/bonenetwork.xyz:25565")
         const data = await response.json()
 
         if (data.online) {

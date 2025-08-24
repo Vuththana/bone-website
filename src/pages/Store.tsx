@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 import { useLanguage } from "@/contexts/language-context"
 import { useEffect, useState } from "react"
 
-
 export default function StorePage() {
   const { t } = useLanguage()
   const [mounted, setMounted] = useState(false)
@@ -63,74 +62,87 @@ export default function StorePage() {
             <h2 className="mb-6 font-minecraft text-2xl text-emerald-400">RANKS</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <StoreItem
-                title="Tier 1 Bone"
-                price={0}
+                title="Knight"
+                price={5}
+                image="https://i.imgur.com/xP05NCU.jpeg"
                 features={[
-                  "5 Home Locations",
+                  "3 Home Locations",
                   "6 Land Claims",
-                  "Claim Tier 1 Kit",
-                  "2,000,000 in-game currency",
+                  "Claim Knight Kit",
+                  "Access to commands: /ec, /anvil",
                 ]}
-                popular={false}
+                recommended={false}
                 color="bg-gradient-to-br from-gray-400 to-gray-600"
               />
 
               <StoreItem
-                title="Tier 2 Bone"
-                price={0}
+                title="Baron"
+                price={10}
+                image="https://i.imgur.com/xyyTPNk.jpeg"
                 features={[
-                  "5 Home Locations",
-                  "12 Land Claims",
-                  "Claim Tier 2 Kit",
-                  "5,000,000 in-game currency",
+                  "3 Home Locations",
+                  "8 Land Claims",
+                  "Claim Baron Kit",
+                  "Access to commands: /ec, /anvil",
                 ]}
-                popular={false}
-                color="bg-gradient-to-br from-yellow-400 to-yellow-600"
-              />
-
-              <StoreItem
-                title="Tier 3 Bone"
-                price={0}
-                features={[
-                  "8 Home Locations",
-                  "16 Land Claims",
-                  "Claim Tier 3 Kit",
-                  "10,000,000 in-game currency",
-                  "Gain access toly in your own land claims",
-                ]}
-                popular={true}
+                recommended={false}
                 color="bg-gradient-to-br from-green-400 to-green-600"
               />
 
               <StoreItem
-                title="Tier 4 Bone"
-                price={0}
+                title="Duke"
+                price={15}
+                image="https://i.imgur.com/NDZuPRo.jpeg"
                 features={[
-                  "10 Home Locations",
-                  "20 Land Claims",
-                  "Claim Tier 4 Kit",
-                  "15,000,000 in-game currency",
-                  "Special Access to Rare Loot Zones",
+                  "5 Home Locations",
+                  "16 Land Claims",
+                  "Claim Duke Kit",
+                  "Access to commands: /sell all, /ec, /anvil",
                 ]}
-                popular={false}
-                color="bg-gradient-to-br from-blue-500 to-blue-700"
+                recommended={true}
+                color="bg-gradient-to-br from-yellow-400 to-yellow-600"
               />
 
               <StoreItem
-                title="Tier 5 Bone"
-                price={0}
+                title="Prince"
+                price={20}
+                image="https://i.imgur.com/me7XmbU.jpeg"
+                features={[
+                  "8 Home Locations",
+                  "20 Land Claims",
+                  "Claim Prince Kit",
+                  "Access to commands: /sell all, /ec, /anvil",
+                ]}
+                recommended={false}
+                color="bg-gradient-to-br from-orange-500 to-orange-700"
+              />
+
+              <StoreItem
+                title="Emperor"
+                price={30}
+                image="https://i.imgur.com/ywxetpk.jpeg"
+                features={[
+                  "15 Home Locations",
+                  "25 Land Claims",
+                  "Claim Emperor Kits",
+                  "Access to commands: /sell all, /ec, /anvil",
+                ]}
+                recommended={false}
+                color="bg-gradient-to-br from-red-600 to-red-900"
+              />
+
+              <StoreItem
+                title="Global"
+                price={50}
                 features={[
                   "15 Home Locations",
                   "25 Land Claims",
                   "Claim All Rank Kits",
-                  "25,000,000 in-game currency",
-                  "Access to Exclusive Events",
-                  "Custom Particles and Trail Effects",
+                  "Access to commands: /sell all, /ec, /anvil",
                 ]}
-                popular={false}
-                color="bg-gradient-to-br from-purple-600 to-purple-900"
+                recommended={false}
+                color="bg-gradient-to-br from-purple-900 via-blue-800 to-pink-600"
               />
-
             </div>
           </div>
 

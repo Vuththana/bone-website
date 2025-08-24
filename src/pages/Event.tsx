@@ -197,8 +197,7 @@ export default function EventPage() {
             <div className="flex items-center justify-center gap-4">
               <div className="rounded-lg bg-black/60 p-4">
                 <p className="font-minecraft text-bone-100">SERVER IP</p>
-                {/* <p className="text-xl text-emerald-400">bonesmp.club</p> */}
-                <p className="text-xl text-emerald-400">COMING SOON</p>
+                <p className="text-xl text-emerald-400">bonenetwork.xyz</p>
               </div>
             </div>
           </div>

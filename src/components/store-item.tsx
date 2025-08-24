@@ -5,7 +5,7 @@ interface StoreItemProps {
   title: string
   price: number
   features: string[]
-  popular?: boolean
+  recommended?: boolean
   color?: string
   image?: string
 }
@@ -14,15 +14,15 @@ export default function StoreItem({
   title,
   price,
   features,
-  popular = false,
+  recommended = false,
   color = "bg-gradient-to-br from-emerald-400 to-emerald-600",
   image,
 }: StoreItemProps) {
   return (
-    <div className={`relative rounded-lg bg-black/40 p-1 backdrop-blur-sm ${popular ? "ring-2 ring-amber-400" : ""}`}>
-      {popular && (
+    <div className={`relative rounded-lg bg-black/40 p-1 backdrop-blur-sm ${recommended ? "ring-2 ring-amber-400" : ""}`}>
+      {recommended && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-black">
-          MOST POPULAR
+          RECOMMENDED
         </div>
       )}
       {image && (

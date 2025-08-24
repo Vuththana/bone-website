@@ -268,7 +268,7 @@ export default function PurchasePage() {
 
                   <div className="mb-4 flex justify-center">
                     <div className="rounded-lg bg-white p-4">
-                      <img src="https://media.discordapp.net/attachments/560806550315204609/1356919910340628533/aba_mobile_1743585233369.png?ex=67ee51a4&is=67ed0024&hm=09b862d3ab3908adbaefc34de6b2c339e326b2cf1fb9eb4ad54af869eaa02678&=&format=webp&quality=lossless&width=1104&height=886"/>
+                      <img src="https://i.imgur.com/MdCZOM7.jpeg"/>
                     </div>
                   </div>
 

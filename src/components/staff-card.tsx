@@ -9,7 +9,7 @@ interface StaffCardProps {
 
 export default function StaffCard({ name, role, avatar, description }: StaffCardProps) {
   return (
-    <div className="flex flex-col items-center rounded-lg bg-stone-800/50 p-4 text-center">
+    <div className="flex flex-col items-center rounded-lg bg-stone-800/50 p-4 text-center justify-center">
       <Avatar className="mb-3 h-20 w-20">
         <AvatarImage src={avatar} alt={name} />
         <AvatarFallback>{name.substring(0, 2)}</AvatarFallback>

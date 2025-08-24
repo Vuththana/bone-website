@@ -87,24 +87,12 @@ export default function AboutPage() {
             <p className="mb-6 text-bone-200">
               {t("team.description")}
             </p>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-1 mx-auto">
               <StaffCard
                 name="GorosXD"
                 role="Owner & Developer"
                 avatar="https://i.imgur.com/pTF0cSw.png"
                 description={t("team.gorosxd_description")}
-              />
-              <StaffCard
-                name="Sasquatchhhh"
-                role="Admin"
-                avatar="https://i.imgur.com/ARyho0i.png"
-                description={t("team.sas_description")}
-              />
-              <StaffCard
-                name="Jakain_"
-                role="Helper"
-                avatar="https://i.imgur.com/DSTKpHP.png"
-                description={t("team.jakain_description")}
               />
             </div>
           </div>
@@ -123,7 +111,7 @@ export default function AboutPage() {
                 <p className="mb-2 font-minecraft text-xl text-bone-100">SERVER IP</p>
                 {/* <p className="text-xl text-emerald-400">JAVA: bonesmp.club</p>
                 <p className="text-xl text-emerald-400">BEDROCK: bonesmp.club</p> */}
-                <p className="text-xl text-emerald-400">COMING SOON</p>
+                <p className="text-xl text-emerald-400">bonenetwork.xyz</p>
               </div>
             </div>
           </div>

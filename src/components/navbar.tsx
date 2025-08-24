@@ -55,12 +55,6 @@ const Navbar = () => {
                 {t("nav.home")}
               </Link>
               <Link
-                to="/news"
-                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
-              >
-                {t("nav.news")}
-              </Link>
-              <Link
                 to="/event"
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
@@ -71,12 +65,6 @@ const Navbar = () => {
                 className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
               >
                 {t("nav.store")}
-              </Link>
-              <Link
-                to="/leaderboards"
-                className="font-minecraft text-bone-300 hover:text-bone-100 px-3 py-2 rounded-md text-sm transition-colors"
-              >
-                {t("nav.leaderboards")}
               </Link>
               <Link
                 to="/rules"
